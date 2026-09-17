@@ -6,8 +6,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('Hello World');
 });
-app.use('/api/geo', require('./routes/geoRoute'));  
-app.use('/api/attractions', require('./routes/attractionRoute'));
+app.use('/api/geo', require('./routes/syn'));  
 const connectServer = async () => {
     try {
         app.listen(process.env.PORT, () => {

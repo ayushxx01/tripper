@@ -17,12 +17,12 @@ async function geoService(location) {
     if(!data || data.length === 0){ 
         throw new Error("No coordinates found for the given location");
     }
-    const latitude = parseFloat(data[0].lat);
-    const longitude = parseFloat(data[0].lon);
+   
+  
 
     return {
-        latitude: latitude,
-        longitude: longitude
+        lat: parseFloat(data[0].lat),
+        lon: parseFloat(data[0].lon)
     }
 }
 
