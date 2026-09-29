@@ -1,4 +1,4 @@
-async function getAttractions(lat,lon,rad){
+async function callOverpass(lat,lon,rad){
     if (!lat || !lon || !rad){
         throw new Error("message: Need all three fields");
     }
@@ -50,4 +50,4 @@ async function getAttractions(lat,lon,rad){
     }
  
 
-module.exports = { getAttractions };
+module.exports = callOverpass ;
