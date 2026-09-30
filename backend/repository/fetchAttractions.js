@@ -1,13 +1,14 @@
-const {pool} = require('../database/pool');
+const pool = require('../database/pool');
 
 //fetches locations which lies under the specificed radius
-async function fetchAttractions(lat,lon,rad) {
+async function fetchAttractions(lat, lon, rad) {
     const result = await pool.query(
-        `SELECT * FROM atrractions WHERE ST_Dwithin(
-            location, ST_MakePoint($1,$2)::geography, $3)`, [lon, lat, rad]
+        `SELECT ST_Y(location::geometry) AS lat, ST_X(location::geometry) AS lon
+         FROM attractions
+         WHERE ST_DWithin(location, ST_MakePoint($1,$2)::geography, $3)`,
+        [lon, lat, rad * 1000]
     );
-
-    return result.map(row => [row.lat,row.lon]); //only send lat n lon needed for flask
+    return result.rows.map(row => [row.lat, row.lon]);
 }
 
 module.exports = fetchAttractions;
