@@ -1,12 +1,17 @@
-const {addAttractions}= require('../services/addAttraction');
+const orchestrator = require('../services/attractions');
 const asyncHandler = require('express-async-handler');
 const phase1controller = asyncHandler(async (req, res) => {
     //take loc and radius from rq.body
-    const {location, radius} = req.body;
+    const {location,radius,days} = req.body;
 
     try {
-    await addAttractions(location, radius);
-    res.status(200).json("Synced succesfully");
+    const groups= await orchestrator(location, radius,days);
+   
+
+    res.status(200).json({
+        message: "Synced",
+        groups
+    });
     } catch (errors){
         res.status(500).json({message: errors.message});
     }
