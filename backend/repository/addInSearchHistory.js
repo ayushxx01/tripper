@@ -1,4 +1,4 @@
-const {pool} = require('../database/pool');
+const pool = require('../database/pool');
 
 async function addInSearchHistory(location, rad){
         await pool.query(`

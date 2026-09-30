@@ -1,4 +1,4 @@
-const {pool} = require('../database/pool');
+const pool = require('../database/pool');
 
 async function existsInSearch(location,rad){
    const result = await pool.query(`
