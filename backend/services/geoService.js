@@ -1,9 +1,7 @@
 
 //gets plain string and returns coordinates
 async function geoService(location) {
-    if(!location){
-        throw new Error("Location is required");
-    }//
+    
     const encoded = encodeURIComponent(location);
 
     const loc = await fetch(`https://nominatim.openstreetmap.org/search?q=${encoded}&format=json&limit=1`,
