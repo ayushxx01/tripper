@@ -13,7 +13,7 @@ const phase1controller = asyncHandler(async (req, res) => {
         groups
     });
     } catch (errors){
-        res.status(500).json({message: errors.message});
+        res.status(500).json({message: errors.cause});
     }
 
 });
