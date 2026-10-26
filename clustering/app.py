@@ -9,8 +9,9 @@ def cluster():
     points = data['points']
     days = data['days']
 
+    coordinates = [[point['lat'], point['lon']] for point in points]
     kmeans = KMeans(n_clusters=days)
-    labels = kmeans.fit_predict(points)
+    labels = kmeans.fit_predict(coordinates)
     
     grouped = {}
     for point, label in zip(points,labels):
@@ -24,4 +25,4 @@ def cluster():
 
 
 if __name__ == '__main__':
-    app.run(port=5001)
+    app.run(port=5002, debug=True)
